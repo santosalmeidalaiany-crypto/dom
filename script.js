@@ -78,3 +78,27 @@ lista.addEventListener("click", (eventos) => {
 
     atualizarContador();
 });
+
+
+
+//TEMA CLARO / ESCURO
+const botaotema = document.getElementById("tema");
+const raiz = document.documentElement; // a tag <html>
+
+function aplicarTema(tema) {
+    raiz.setAttribute("data-tema" , tema);
+    botaotema.textContent = tema === "escuro" ? "tema claro" : "tema escuro";
+}
+
+// Ao abrir a página: usar o tema salvo ou, se não houver, o do sistema
+const temaSalvo = localStorage.getItem("tema");
+const sistemaEscuro = window.matchMedia("(prefer-color-scheme: dark)").matches;
+aplicarTema(temasalvo ||(sistemaEscuro ? "escuro" : "claro"));
+
+//Ao clicar: inverte o tema e salva a escolha
+botaotema.addEventListener("click", () => {
+    const atual = raiz.getAttribute("data-tema");
+    const novo = atual === "escuro" ? "claro" : "escuro";
+    aplicarTema(novo);
+    localStorage.getItem("rema" , novo);
+});
